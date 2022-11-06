@@ -3,12 +3,12 @@ body {
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
+    /* display: grid; */
+    /* grid-template-columns: auto auto; */
     /* background-color: #2196F3; */
     padding-left: 0;
     padding-right: 0;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
   }
   
@@ -37,7 +37,7 @@ body {
     grid-template-columns: auto auto;
     gap: 0.5em;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
   
 .form-control + .form-control {
