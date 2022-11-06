@@ -1,7 +1,7 @@
 colors = ["#FFCC00", "#ff0000", "#0000FF", "#000000"]
 backgroundColor = "dimgrey"
 
-function draw() {
+function draw(d="") {
     let color0 = document.querySelector("#color0");
     color0.value = colors[0]
     color0.style.backgroundColor = color0.value;
@@ -32,7 +32,12 @@ function draw() {
     let context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    context.fillStyle = "transparent";
+    if(d==""){
+        context.fillStyle = "transparent";
+    } else {
+        context.fillStyle = "white";
+    }
+        
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     const factor = 2
@@ -101,20 +106,27 @@ function draw() {
     }
 
     //Rectangle en bas
-    context.beginPath();
-    context.moveTo(0*factor, H+2);
-    context.lineTo(400*factor, H+2);
-    context.lineTo(400*factor, H+40);
-    context.lineTo(0*factor, H+40);
-    context.closePath();
     
-    context.fillStyle = backgroundColor;
-    context.fill();
-    context.lineWidth = 4;
-    context.strokeStyle = backgroundColor;
+    context.beginPath();
+        context.moveTo(0*factor, H+2);
+        context.lineTo(400*factor, H+2);
+        context.lineTo(400*factor, H+40);
+        context.lineTo(0*factor, H+40);
+        context.closePath();
+    if(d=="") {
+        context.fillStyle = backgroundColor;
+        context.fill();
+        context.lineWidth = 4;
+        context.strokeStyle = backgroundColor;
+    } else {
+        context.fillStyle = "white";
+        context.fill();
+        context.lineWidth = 4;
+        context.strokeStyle = "white";
+    }
     context.stroke();
 
-    // var img    = canvas.toDataURL("image/png");
+    
     // document.write('<img src="'+img+'"/>');
 }
 
@@ -131,5 +143,17 @@ function updateAll(event) {
     let color3 = document.querySelector("#color3");
     colors[3] = color3.value;
     color3.style.backgroundColor = color3.value;
+    draw()
+}
+
+function openImage() {
+    let canvas = document.querySelector("#canvas");
+    let context = canvas.getContext("2d");
+    draw(3)
+    var img    = canvas.toDataURL("image/png");
+    var win = window.open("");
+    win.document.write('<title>Image Export</title>');
+    win.document.write('<iframe src="' + img  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen> </iframe>');
+    
     draw()
 }
